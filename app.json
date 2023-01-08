@@ -1,5 +1,6 @@
 {
   "expo": {
+    "entryPoint": "source/index.js",
     "name": "alternova-native-test",
     "slug": "alternova-native-test",
     "version": "1.0.0",
