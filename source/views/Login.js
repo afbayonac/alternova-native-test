@@ -5,16 +5,7 @@ import { initializeApp } from 'firebase/app'
 import { signInWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
 import { register } from '../store/user'
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyD60p-7UCjiX1OqMehvrFGHaD3rBT3gqLk',
-  authDomain: 'playground-9303c.firebaseapp.com',
-  projectId: 'playground-9303c',
-  storageBucket: 'playground-9303c.appspot.com',
-  messagingSenderId: '451250789927',
-  appId: '1:451250789927:web:01742390d5d1bf4aaf7802',
-  measurementId: 'G-E3W50S83ST'
-}
+import { firebaseConfig } from '../../gobals'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -50,7 +41,7 @@ const Login = () => {
       <View style={styles.card}>
         <Text>Correo:</Text>
         <TextInput
-           style={styles.input}
+          style={styles.input}
           value={email}
           onChangeText={handleEmail}
           placeholder='alternova@domain.com'

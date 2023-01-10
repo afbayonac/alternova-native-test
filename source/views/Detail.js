@@ -67,9 +67,11 @@ const Detail = () => {
           enabled={item.stock > 1}
         >
           {
-            Array(item.stock)
-              .fill('')
-              .map((_, i) => <Item key={i} label={`${i + 1}`} value={`${i + 1}`} />)
+            item.stock === 0
+              ? <Item label='0' value='1' />
+              : Array(item.stock)
+                .fill('')
+                .map((_, i) => <Item key={i} label={`${i + 1}`} value={`${i + 1}`} />)
           }
         </Picker>
 

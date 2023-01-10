@@ -12,35 +12,40 @@ import Login from './views/Login'
 
 const App = () => {
   const user = useSelector(state => state.user.active)
+
   return (
     <NativeRouter>
       <Header />
       {
         user
-          ? <Routes>
-            <Route
-              exact
-              path='/'
-              element={<Home />}
-            />
-            <Route
-              exact
-              path='/:id'
-              element={<Detail />}
-            />
-            <Route
-              exact
-              path='/cart'
-              element={<Cart />}
-            />
-          </Routes> 
-          : <Routes>
-            <Route
-              exact
-              path='/'
-              element={<Login />}
-            />
-          </Routes>
+          ? (
+            <Routes>
+              <Route
+                exact
+                path='/'
+                element={<Home />}
+              />
+              <Route
+                exact
+                path='/:id'
+                element={<Detail />}
+              />
+              <Route
+                exact
+                path='/cart'
+                element={<Cart />}
+              />
+            </Routes>
+            )
+          : (
+            <Routes>
+              <Route
+                exact
+                path='/'
+                element={<Login />}
+              />
+            </Routes>
+            )
       }
     </NativeRouter>
   )
