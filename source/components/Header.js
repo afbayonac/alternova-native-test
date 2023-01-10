@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Text, View, StyleSheet, StatusBar, Switch } from 'react-native'
 import { Link } from 'react-router-native'
+import { useSelector } from 'react-redux'
 
 const Header = () => {
   const [isEnabled, setIsEnable] = useState()
+  const user = useSelector(state => state.user.active)
 
   const toggleSwitch = () => {
     setIsEnable(!isEnabled)
@@ -13,9 +15,12 @@ const Header = () => {
     <View style={styles.header}>
       <StatusBar style='auto' />
       <View style={{ flexDirection: 'row' }}>
-        <Link to='/' underlayColor='transparent'>
-          <Text style={styles.arrow}>⌂</Text>
-        </Link>
+        {
+          user &&
+            <Link to='/' underlayColor='transparent'>
+              <Text style={styles.arrow}>⌂</Text>
+            </Link>
+        }
         <Text style={styles.lego}>Lego</Text>
         <Text style={styles.shop}>Shop</Text>
       </View>
@@ -29,12 +34,12 @@ const Header = () => {
           onValueChange={toggleSwitch}
           value={isEnabled}
         />
-        <Link to='/cart' underlayColor='transparent'>
-          <Text style={styles.cart}> 🛒</Text>
-        </Link>
-        <Link to='/login' underlayColor='transparent'>
-          <Text style={styles.cart}> Login </Text>
-        </Link>
+        {
+          user &&
+            <Link to='/cart' underlayColor='transparent'>
+              <Text style={styles.cart}> 🛒</Text>
+            </Link>
+        }
       </View>
 
     </View>
