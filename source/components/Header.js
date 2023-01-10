@@ -1,18 +1,39 @@
-import { Text, View, StyleSheet } from 'react-native'
+import { useState } from 'react'
+import { Text, View, StyleSheet, StatusBar, Switch } from 'react-native'
 import { Link } from 'react-router-native'
 
 const Header = () => {
-  // useEffect(() => {
-  //   fetch()
-  // })
+  const [isEnabled, setIsEnable] = useState()
+
+  const toggleSwitch = () => {
+    setIsEnable(!isEnabled)
+  }
 
   return (
     <View style={styles.header}>
-      <Link to='/' underlayColor='transparent'>
-        <Text style={styles.arrow}>⌂</Text>
-      </Link>
-      <Text style={styles.lego}>Lego</Text>
-      <Text style={styles.shop}>Shop</Text>
+      <StatusBar style='auto' />
+      <View style={{ flexDirection: 'row' }}>
+        <Link to='/' underlayColor='transparent'>
+          <Text style={styles.arrow}>⌂</Text>
+        </Link>
+        <Text style={styles.lego}>Lego</Text>
+        <Text style={styles.shop}>Shop</Text>
+      </View>
+
+      <View style={{ flexDirection: 'row' }}>
+        <Switch
+          style={{ marginTop: 4 }}
+          trackColor={{ false: '#767577', true: '#81b0ff' }}
+          thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+          ios_backgroundColor='#3e3e3e'
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+        <Link to='/cart' underlayColor='transparent'>
+          <Text style={styles.cart}> 🛒</Text>
+        </Link>
+      </View>
+
     </View>
   )
 }
@@ -22,7 +43,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 60,
     // backgroundColor: 'gray',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16
   },
   arrow: {
     fontSize: 24,
@@ -33,7 +56,6 @@ const styles = StyleSheet.create({
     height: 40,
     marginTop: 10,
     textAlign: 'center',
-    marginLeft: 16,
     borderRadius: 20
   },
   lego: {
@@ -50,6 +72,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: 'orange',
     fontFamily: 'DynaPuff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    lineHeight: 60,
+    paddingHorizontal: 8
+  },
+  cart: {
+    fontSize: 20,
     justifyContent: 'center',
     alignItems: 'center',
     lineHeight: 60,

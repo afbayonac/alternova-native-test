@@ -1,10 +1,14 @@
 import registerRootComponent from 'expo/build/launch/registerRootComponent'
 import { useFonts } from 'expo-font'
 
-import { StatusBar, View, Text } from 'react-native'
 import Home from './views/Home'
 import { NativeRouter, Route, Routes } from 'react-router-native'
 import Header from './components/Header'
+
+import { store } from './store/store'
+import { Provider } from 'react-redux'
+import Cart from './views/Cart'
+import Detail from './views/Detail'
 
 const Root = () => {
   const [loaded] = useFonts({
@@ -17,8 +21,7 @@ const Root = () => {
   }
 
   return (
-    <View>
-      <StatusBar style='auto' />
+    <Provider store={store}>
       <NativeRouter>
         <Header />
         <Routes>
@@ -30,16 +33,16 @@ const Root = () => {
           <Route
             exact
             path='/:id'
-            element={<Text>detail</Text>}
+            element={<Detail />}
           />
           <Route
             exact
             path='/cart'
-            element={<Text>cart</Text>}
+            element={<Cart />}
           />
         </Routes>
       </NativeRouter>
-    </View>
+    </Provider>
   )
 }
 

@@ -2,10 +2,13 @@ import { Picker } from '@react-native-picker/picker'
 import { useState } from 'react'
 import { Image, Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Link } from 'react-router-native'
+import { useDispatch } from 'react-redux'
+import { add } from '../store/products'
 
 const { Item } = Picker
 
 const Product = ({ item }) => {
+  const dispatch = useDispatch()
   const [quantity, setQuantity] = useState('1')
 
   const handleQuantity = (value) => {
@@ -13,7 +16,7 @@ const Product = ({ item }) => {
   }
 
   const handleCart = (value) => {
-    console.log(quantity, 'buy')
+    dispatch(add({ id: item.id, quantity: Number(quantity) }))
   }
 
   return (
@@ -58,8 +61,9 @@ const Product = ({ item }) => {
       <TouchableOpacity
         style={styles.button}
         onPress={handleCart}
+        disabled={item.stock < 1}
       >
-        <Text style={styles.buttonText}>Add to cart</Text>
+        <Text style={styles.buttonText}>Agregar al Carro</Text>
       </TouchableOpacity>
     </View>
   )
