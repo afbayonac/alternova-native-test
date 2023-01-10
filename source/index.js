@@ -9,6 +9,7 @@ import { store } from './store/store'
 import { Provider } from 'react-redux'
 import Cart from './views/Cart'
 import Detail from './views/Detail'
+import Login from './views/Login'
 
 const Root = () => {
   const [loaded] = useFonts({
@@ -39,6 +40,11 @@ const Root = () => {
             exact
             path='/cart'
             element={<Cart />}
+          />
+          <Route
+            exact
+            path='/login'
+            element={<Login />}
           />
         </Routes>
       </NativeRouter>

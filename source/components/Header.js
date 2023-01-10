@@ -32,6 +32,9 @@ const Header = () => {
         <Link to='/cart' underlayColor='transparent'>
           <Text style={styles.cart}> 🛒</Text>
         </Link>
+        <Link to='/login' underlayColor='transparent'>
+          <Text style={styles.cart}> Login </Text>
+        </Link>
       </View>
 
     </View>
